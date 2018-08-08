@@ -424,7 +424,13 @@ return /******/ (function(modules) { // webpackBootstrap
 				return _react2.default.createElement(
 					'div',
 					{ className: "filterable-table-container" + (this.props.className ? ' ' + this.props.className : '') },
-					this.props.preHeader(filteredEntries),
+					_react2.default.createElement(
+						'h1',
+						null,
+						' Alex '
+					),
+					this.props.preHeader && this.props.preHeader(filteredEntries),
+					this.props.children && this.props.children(filteredEntries),
 					_react2.default.createElement(_Header2.default, {
 						loading: this.state.loading,
 						updateFilter: this.updateFilter,
