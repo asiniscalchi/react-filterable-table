@@ -424,6 +424,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				return _react2.default.createElement(
 					'div',
 					{ className: "filterable-table-container" + (this.props.className ? ' ' + this.props.className : '') },
+					this.props.preHeader(filteredEntries),
 					_react2.default.createElement(_Header2.default, {
 						loading: this.state.loading,
 						updateFilter: this.updateFilter,
@@ -444,11 +445,6 @@ return /******/ (function(modules) { // webpackBootstrap
 						pageSizes: this.props.pageSizes,
 						autofocusFilter: this.props.autofocusFilter
 					}),
-					_react2.default.createElement(
-						'h1',
-						null,
-						'Ciaociao prova'
-					),
 					_react2.default.createElement(
 						'div',
 						{ className: 'table-container' },

@@ -315,9 +315,9 @@ class FilterableTable extends React.Component {
 				titles={this.props.pagerTitles}
 			/>;
 
-
 		return (
 			<div className={"filterable-table-container" + (this.props.className ? ' ' + this.props.className : '')}>
+				{this.props.preHeader(filteredEntries)}
 				<Header
 					loading={this.state.loading}
 					updateFilter={this.updateFilter}
@@ -339,9 +339,6 @@ class FilterableTable extends React.Component {
 					autofocusFilter={this.props.autofocusFilter}
 				>
 				</Header>
-
-				<h1>Ciaociao prova</h1>
-				
 
 				<div className="table-container">
 					{loading}

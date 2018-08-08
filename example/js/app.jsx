@@ -58,6 +58,7 @@ ReactDOM.render(
 			fields={fields}
 			roRecordsMessage="There are no people to display"
 			noFilteredRecordsMessage="No people match your filters!"
+			preHeader={console.log}
 		/>
 	</div>, document.getElementById('root')
 );
