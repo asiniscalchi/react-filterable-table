@@ -317,7 +317,7 @@ class FilterableTable extends React.Component {
 
 		return (
 			<div className={"filterable-table-container" + (this.props.className ? ' ' + this.props.className : '')}>
-				{this.props.preHeader(filteredEntries)}
+				{this.props.children && this.props.children(filteredEntries)}
 				<Header
 					loading={this.state.loading}
 					updateFilter={this.updateFilter}
