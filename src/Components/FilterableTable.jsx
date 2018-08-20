@@ -350,6 +350,7 @@ class FilterableTable extends React.Component {
 					onStopDateChange={stopDate => this.setState({stopDate})}
 					startDate={this.state.startDate}
 					stopDate={this.state.stopDate}
+					filteredEntries={filteredEntries}
 				>
 				</Header>
 

@@ -25,6 +25,7 @@
     "moment": "^2.22.2",
     "npm": "^6.1.0",
     "react-datepicker": "^1.6.0",
+    "react-excel-workbook": "0.0.4",
     "react-pager": "^1.3.2"
   },
   "peerDependencies": {
