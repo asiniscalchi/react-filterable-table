@@ -1,5 +1,8 @@
 ﻿import React from 'react';
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
 import ExactFilters from './ExactFilters'; 
+import 'react-datepicker/dist/react-datepicker.css'
 
 class Header extends React.Component {
 	constructor(props) {
@@ -53,6 +56,26 @@ class Header extends React.Component {
 				{this.props.upperHeaderChildren}
 				<div className="row header-row">
 					<div className="col-sm-3 filter-container">
+						<DatePicker
+							className="form-control filter-input"
+							//selected={startDate}
+							placeholderText="select a start date"
+							onChange={date => this.setState({ startDate: date })}
+							isClearable={true}
+							dateFormat="DD-MM-YYYY"
+						/>
+					</div>
+					<div className="col-sm-3 filter-container">
+						<DatePicker
+							className="form-control filter-input"
+							//selected={startDate}
+							placeholderText="select a end date"
+							onChange={date => this.setState({ startDate: date })}
+							isClearable={true}
+							dateFormat="DD-MM-YYYY"
+						/>
+					</div>
+					<div className="col-sm-3 filter-container">
 						<span className="filter-container">
 							<input type="text" className="form-control filter-input" value={filter} onChange={this.filterChanged} ref="filter" placeholder="Filter" autoFocus={this.props.autofocusFilter} />
 							<span className="close clear-filter" onClick={() => this.filterChanged('')}>
@@ -60,10 +83,7 @@ class Header extends React.Component {
 							</span>
 						</span>
 					</div>
-					<div className="col-sm-5 col-sm-push-4">
-						{perPageSelect}
-					</div>
-					<div className="col-sm-4 col-sm-pull-4 text-center text-muted record-count">
+					<div className="col-sm-3 text-center text-muted record-count">
 						{loading || recordCountMessage}
 					</div>
 				</div>
