@@ -5,6 +5,7 @@ import Pager from 'react-pager';
 import FilterAndSort from '../Helpers/FilterAndSort';
 import axios from 'axios';
 import isElementInViewport from '../Helpers/isElementInViewport';
+import moment from 'moment'
 
 class FilterableTable extends React.Component {
 	constructor(props) {
@@ -21,7 +22,9 @@ class FilterableTable extends React.Component {
 			totalPages: 1,
 			visiblePages: 5,
 			page: 0,
-			pageSize: +localStorage.getItem(this.props.namespace + '.PageSize') || this.props.pageSize || 10
+			pageSize: +localStorage.getItem(this.props.namespace + '.PageSize') || this.props.pageSize || 10,
+			startDate: null,
+			stopDate: null
 		}
 
 		this.loadData = this.loadData.bind(this);
@@ -259,7 +262,7 @@ class FilterableTable extends React.Component {
 		  	<div>
 				{this.props.noRecordsMessage}
 			</div>
-
+		
 
 		let filteredEntries = FilterAndSort(this.state.entries, {
 			filter: this.state.filter,
@@ -270,7 +273,12 @@ class FilterableTable extends React.Component {
 			fields: fields
 		});
 
+	
+		if (this.state.startDate != null)
+			filteredEntries = filteredEntries.filter(sale => (moment(sale.saleDate) >= this.state.startDate))
 
+		if (this.state.stopDate != null)
+			filteredEntries = filteredEntries.filter(sale => (moment(sale.saleDate) <= this.state.stopDate))
 
 		let table = !this.state.loading && this.state.entries.length > 0 &&
 			<Table
@@ -338,6 +346,10 @@ class FilterableTable extends React.Component {
 					pagersVisible={this.props.pagersVisible}
 					pageSizes={this.props.pageSizes}
 					autofocusFilter={this.props.autofocusFilter}
+					onStartDateChange={startDate => this.setState({startDate})}
+					onStopDateChange={stopDate => this.setState({stopDate})}
+					startDate={this.state.startDate}
+					stopDate={this.state.stopDate}
 				>
 				</Header>
 

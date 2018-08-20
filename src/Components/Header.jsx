@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import DatePicker from 'react-datepicker'
-import moment from 'moment'
 import ExactFilters from './ExactFilters'; 
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -32,7 +31,7 @@ class Header extends React.Component {
 		if (this.props.visible === false) {
 			return <div></div>;
 		}
-		const { loading, recordCount, filter, updateFilter, updatePageSize, pageSizes } = this.props;
+		const { loading, recordCount, filter, updateFilter, updatePageSize, pageSizes, onStartDateChange, onStopDateChange, startDate, stopDate } = this.props;
 
 		// Record count message -- the text at the top that says something like "4 records"
 		// text can be overridden using the recordCountName and recordCountNamePlural props.
@@ -58,9 +57,9 @@ class Header extends React.Component {
 					<div className="col-sm-3 filter-container">
 						<DatePicker
 							className="form-control filter-input"
-							//selected={startDate}
+							selected={startDate}
 							placeholderText="select a start date"
-							onChange={date => this.setState({ startDate: date })}
+							onChange={date => onStartDateChange && onStartDateChange(date)}
 							isClearable={true}
 							dateFormat="DD-MM-YYYY"
 						/>
@@ -68,9 +67,9 @@ class Header extends React.Component {
 					<div className="col-sm-3 filter-container">
 						<DatePicker
 							className="form-control filter-input"
-							//selected={startDate}
+							selected={stopDate}
 							placeholderText="select a end date"
-							onChange={date => this.setState({ startDate: date })}
+							onChange={date => onStopDateChange && onStopDateChange(date)}
 							isClearable={true}
 							dateFormat="DD-MM-YYYY"
 						/>
