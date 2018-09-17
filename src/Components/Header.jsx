@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import DatePicker from 'react-datepicker'
 import ExactFilters from './ExactFilters'; 
-import Workbook from 'react-excel-workbook'
 import 'react-datepicker/dist/react-datepicker.css'
 
 class Header extends React.Component {
@@ -32,7 +31,7 @@ class Header extends React.Component {
 		if (this.props.visible === false) {
 			return <div></div>;
 		}
-		const { loading, recordCount, filter, updateFilter, updatePageSize, pageSizes, onStartDateChange, onStopDateChange, startDate, stopDate, filteredEntries } = this.props;
+		const { loading, recordCount, filter, updateFilter, updatePageSize, pageSizes, onStartDateChange, onStopDateChange, startDate, stopDate, filteredEntries, workbook } = this.props;
 
 		// Record count message -- the text at the top that says something like "4 records"
 		// text can be overridden using the recordCountName and recordCountNamePlural props.
@@ -83,19 +82,8 @@ class Header extends React.Component {
 							</span>
 						</span>
 					</div>
-					<div className="col-sm-3">
-						<Workbook filename="bac_sales.xlsx" element={<button className="btn btn-sm btn-primary">Export Excel</button>}>
-							<Workbook.Sheet data={filteredEntries} name="Sheet A">
-								<Workbook.Column label="date" value="saleDate" />
-								<Workbook.Column label="client" value="clientBacId" />
-								<Workbook.Column label="movie" value="movieTitle" />
-								<Workbook.Column label="amount" value="amount" />
-								<Workbook.Column label="distributor margin" value="distributorMargin" />
-								<Workbook.Column label="BAC margin" value="bacMargin" />
-								<Workbook.Column label="contract" value="contractName" />
-							</Workbook.Sheet>
-						</Workbook>
-					</div>
+					{console.log(workbook)}
+					{workbook && workbook(filteredEntries)}
 				</div>
 				{this.props.lowerHeaderChildren}
 				<div className="row header-row">

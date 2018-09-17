@@ -273,10 +273,11 @@ class FilterableTable extends React.Component {
 			fields: fields
 		});
 
-	
-		if (this.state.startDate != null)
-			filteredEntries = filteredEntries.filter(sale => (moment(sale.saleDate) >= this.state.startDate))
+		if (this.props.startDateFilter)
+			filteredEntries = this.props.startDateFilter(filteredEntries, this.state.startDate);
 
+		if (this.props.stopDateFilter)
+			filteredEntried = this.props.stopDateFilter(filteredEntries, this.state.stopDate);
 		if (this.state.stopDate != null)
 			filteredEntries = filteredEntries.filter(sale => (moment(sale.saleDate) <= this.state.stopDate))
 
@@ -351,6 +352,7 @@ class FilterableTable extends React.Component {
 					startDate={this.state.startDate}
 					stopDate={this.state.stopDate}
 					filteredEntries={filteredEntries}
+					workbook={this.props.workbook}
 				>
 				</Header>
 

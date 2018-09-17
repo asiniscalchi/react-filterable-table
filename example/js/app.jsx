@@ -1,5 +1,7 @@
 const ReactDOM = require('react-dom');
 const FilterableTable = require('../../src/Components/FilterableTable.jsx');
+import Workbook from 'react-excel-workbook'
+import moment from 'moment'
 
 let data = [
 	{ name: "Steve", age: 27, job: "Sandwich Eater" },
@@ -48,6 +50,27 @@ let fields = [
 	{ name: 'job', displayName: "Occupation", inputFilterable: true, exactFilterable: true, sortable: true }
 ];
 
+const workbook = (filteredEntries) => {
+	return (
+		<div className="col-sm-3">
+			<Workbook filename="bac_sales.xlsx" element={<button className="btn btn-sm btn-primary">Export Excel</button>}>
+				<Workbook.Sheet data={filteredEntries} name="Sheet A">
+					<Workbook.Column label="date" value="saleDate" />
+					<Workbook.Column label="client" value="clientBacId" />
+					<Workbook.Column label="movie" value="movieTitle" />
+					<Workbook.Column label="amount" value="amount" />
+					<Workbook.Column label="distributor margin" value="distributorMargin" />
+					<Workbook.Column label="BAC margin" value="bacMargin" />
+					<Workbook.Column label="contract" value="contractName" />
+				</Workbook.Sheet>
+			</Workbook>
+		</div>
+	);
+}
+
+const startDateFilter = (filteredEntries, startDate) => (filteredEntries.filter(sale => (moment(sale.saleDate) >= startDate)))
+const stopDateFilter = (filteredEntries, stopDate) => (filteredEntries.filter(sale => (moment(sale.saleDate) <= stopDate)))
+
 
 ReactDOM.render(
 	<div>
@@ -59,6 +82,8 @@ ReactDOM.render(
 			roRecordsMessage="There are no people to display"
 			noFilteredRecordsMessage="No people match your filters!"
 			preHeader={console.log}
+			workbook={workbook}
+			startDateFilter={startDateFilter}
 		/>
 	</div>, document.getElementById('root')
 );
