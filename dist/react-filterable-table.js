@@ -394,7 +394,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				if (this.props.startDateFilter) filteredEntries = this.props.startDateFilter(filteredEntries, this.state.startDate);
 
-				if (this.props.stopDateFilter) filteredEntried = this.props.stopDateFilter(filteredEntries, this.state.stopDate);
+				if (this.props.stopDateFilter) filteredEntries = this.props.stopDateFilter(filteredEntries, this.state.stopDate);
 
 				var table = !this.state.loading && this.state.entries.length > 0 && _react2.default.createElement(_Table2.default, {
 					records: filteredEntries,
