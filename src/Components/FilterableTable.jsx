@@ -278,8 +278,6 @@ class FilterableTable extends React.Component {
 
 		if (this.props.stopDateFilter)
 			filteredEntried = this.props.stopDateFilter(filteredEntries, this.state.stopDate);
-		if (this.state.stopDate != null)
-			filteredEntries = filteredEntries.filter(sale => (moment(sale.saleDate) <= this.state.stopDate))
 
 		let table = !this.state.loading && this.state.entries.length > 0 &&
 			<Table
