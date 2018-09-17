@@ -392,9 +392,9 @@ return /******/ (function(modules) { // webpackBootstrap
 					fields: fields
 				});
 
-				if (this.props.startDateFilter) filteredEntries = this.props.startDateFilter(filteredEntries, this.state.startDate);
+				if (this.props.startDateFilter && this.state.startDate !== null) filteredEntries = this.props.startDateFilter(filteredEntries, this.state.startDate);
 
-				if (this.props.stopDateFilter) filteredEntries = this.props.stopDateFilter(filteredEntries, this.state.stopDate);
+				if (this.props.stopDateFilter && this.state.stopDate !== null) filteredEntries = this.props.stopDateFilter(filteredEntries, this.state.stopDate);
 
 				var table = !this.state.loading && this.state.entries.length > 0 && _react2.default.createElement(_Table2.default, {
 					records: filteredEntries,

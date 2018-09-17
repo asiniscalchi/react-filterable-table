@@ -273,10 +273,10 @@ class FilterableTable extends React.Component {
 			fields: fields
 		});
 
-		if (this.props.startDateFilter)
+		if (this.props.startDateFilter && this.state.startDate !== null)
 			filteredEntries = this.props.startDateFilter(filteredEntries, this.state.startDate);
 
-		if (this.props.stopDateFilter)
+		if (this.props.stopDateFilter && this.state.stopDate !== null)
 			filteredEntries = this.props.stopDateFilter(filteredEntries, this.state.stopDate);
 
 		let table = !this.state.loading && this.state.entries.length > 0 &&
